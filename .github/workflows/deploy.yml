@@ -28,7 +28,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: likhithatangudu/webapp:${{ github.sha }}
+          tags: likhithatangudu/webappcopy:${{ github.sha }}
 
 
       - name: Deploy to EC2 instance
@@ -38,7 +38,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
-            docker stop webapp || true
-            docker rm webapp || true
-            docker pull ${{ secrets.DOCKER_USERNAME }}/webapp:${{ github.sha }}
-            docker run -d --name webapp -p 80:80 ${{ secrets.DOCKER_USERNAME }}/webapp:${{ github.sha }}
+            docker stop webappcopy || true
+            docker rm webappcopy || true
+            docker pull ${{ secrets.DOCKER_USERNAME }}/webappcopy:${{ github.sha }}
+            docker run -d --name webappcopy -p 80:80 ${{ secrets.DOCKER_USERNAME }}/webappcopy:${{ github.sha }}
